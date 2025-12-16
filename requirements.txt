@@ -1,0 +1,26 @@
+# Core Testing Framework
+pytest==7.4.3
+pytest-xdist==3.5.0
+pytest-dependency==0.5.1
+pytest-html==4.1.1
+
+# Playwright
+playwright==1.40.0
+
+# Configuration
+pyyaml==6.0.1
+
+# Logging
+colorlog==6.8.0
+
+# Utilities
+python-dotenv==1.0.0
+tenacity==8.2.3
+
+# Notifications (optional, for Slack)
+requests==2.31.0
+
+# Code Quality (optional)
+black==23.12.0
+flake8==6.1.0
+
