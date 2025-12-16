@@ -525,4 +525,93 @@ class BasePage:
             error = f"Expected URL to contain '{expected_url}', got '{current_url}'"
             logger.error(error)
             raise AssertionError(error)
+    
+    def assert_element_present(self, selector: str):
+        """
+        Assert element exists in DOM (may not be visible).
+        
+        Args:
+            selector: CSS selector
+        
+        Raises:
+            AssertionError if element not present
+        """
+        logger.info(f"Asserting element present: {selector}")
+        if not self.is_element_present(selector):
+            error = f"Element not present in DOM: {selector}"
+            logger.error(error)
+            raise AssertionError(error)
+    
+    def assert_attribute_equals(self, selector: str, attribute: str, expected_value: str):
+        """
+        Assert element attribute has expected value.
+        
+        Args:
+            selector: CSS selector
+            attribute: Attribute name (e.g., 'href', 'data-id', 'value')
+            expected_value: Expected attribute value
+        
+        Raises:
+            AssertionError if attribute doesn't match
+        """
+        logger.info(f"Asserting attribute: {selector}[{attribute}] == {expected_value}")
+        actual_value = self.get_attribute(selector, attribute)
+        if actual_value != expected_value:
+            error = f"Expected {attribute}='{expected_value}', got '{actual_value}'"
+            logger.error(error)
+            raise AssertionError(error)
+    
+    def assert_element_count(self, selector: str, expected_count: int):
+        """
+        Assert number of elements matching selector equals expected count.
+        
+        Args:
+            selector: CSS selector
+            expected_count: Expected number of elements
+        
+        Raises:
+            AssertionError if count doesn't match
+        """
+        logger.info(f"Asserting element count: {selector} == {expected_count}")
+        elements = self.page.query_selector_all(selector)
+        actual_count = len(elements)
+        if actual_count != expected_count:
+            error = f"Expected {expected_count} elements, found {actual_count}"
+            logger.error(error)
+            raise AssertionError(error)
+    
+    def assert_page_title(self, expected_title: str):
+        """
+        Assert page title equals expected title.
+        
+        Args:
+            expected_title: Expected page title
+        
+        Raises:
+            AssertionError if title doesn't match
+        """
+        logger.info(f"Asserting page title: {expected_title}")
+        actual_title = self.get_page_title()
+        if actual_title != expected_title:
+            error = f"Expected title '{expected_title}', got '{actual_title}'"
+            logger.error(error)
+            raise AssertionError(error)
+    
+    def assert_text_exact(self, selector: str, expected_text: str):
+        """
+        Assert element text exactly equals expected text (not just contains).
+        
+        Args:
+            selector: CSS selector
+            expected_text: Expected exact text
+        
+        Raises:
+            AssertionError if text doesn't match exactly
+        """
+        logger.info(f"Asserting exact text: {selector} == {expected_text}")
+        actual_text = self.get_text(selector).strip()
+        if actual_text != expected_text:
+            error = f"Expected text '{expected_text}', got '{actual_text}'"
+            logger.error(error)
+            raise AssertionError(error)
 
