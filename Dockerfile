@@ -17,5 +17,5 @@ RUN python -m playwright install chromium
 COPY . .
 
 # Run tests by default
-CMD ["pytest"]
+CMD ["pytest", "-v", "tests/smoke/test_playwright_docs.py"]
 
