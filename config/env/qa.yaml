@@ -1,0 +1,29 @@
+# QA Environment Configuration
+
+base_url: "https://qa.example.com"
+
+browser:
+  name: "chromium"
+  headless: true
+  slow_mo: 0
+  viewport:
+    width: 1920
+    height: 1080
+
+timeouts:
+  page_load: 45
+  element_wait: 15
+  network: 30
+
+logging:
+  level: "INFO"
+  to_file: true
+
+screenshots:
+  on_failure: true
+  on_every_step: false
+
+test_data:
+  valid_user: "qa_user@qa.example.com"
+  valid_password: "qapassword123"
+

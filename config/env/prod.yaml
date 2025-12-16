@@ -1,0 +1,29 @@
+# Production Environment Configuration
+
+base_url: "https://app.example.com"
+
+browser:
+  name: "chromium"
+  headless: true
+  slow_mo: 0
+  viewport:
+    width: 1920
+    height: 1080
+
+timeouts:
+  page_load: 60
+  element_wait: 20
+  network: 45
+
+logging:
+  level: "WARNING"
+  to_file: false
+
+screenshots:
+  on_failure: false
+  on_every_step: false
+
+test_data:
+  valid_user: "prod_user@prod.example.com"
+  valid_password: "prodpassword123"
+

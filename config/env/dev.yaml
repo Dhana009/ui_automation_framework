@@ -1,0 +1,29 @@
+# Development Environment Configuration
+
+base_url: "http://localhost:3000"
+
+browser:
+  name: "chromium"
+  headless: false
+  slow_mo: 100
+  viewport:
+    width: 1280
+    height: 720
+
+timeouts:
+  page_load: 30
+  element_wait: 10
+  network: 20
+
+logging:
+  level: "DEBUG"
+  to_file: true
+
+screenshots:
+  on_failure: true
+  on_every_step: false
+
+test_data:
+  valid_user: "user@dev.example.com"
+  valid_password: "devpassword123"
+

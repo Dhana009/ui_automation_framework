@@ -1,44 +1,44 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
-
-# Playwright
-browsers/
-.wdm/
-
-# Test Reports
-reports/
-*.html
-*.xml
-
-# Screenshots and Logs
-screenshots/
-logs/
-*.log
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.swn
-
-# Environment
-.env
-.env.local
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Project specific
-data/flaky_tests.json
-data/cleanup_registry.json
+## Python
+#__pycache__/
+#*.py[cod]
+#*$py.class
+#*.so
+#.Python
+#env/
+#venv/
+#ENV/
+#.venv
+#
+## Playwright
+#browsers/
+#.wdm/
+#
+## Test Reports
+#reports/
+#*.html
+#*.xml
+#
+## Screenshots and Logs
+#screenshots/
+#logs/
+#*.log
+#
+## IDE
+#.vscode/
+#.idea/
+#*.swp
+#*.swo
+#*.swn
+#
+## Environment
+#.env
+#.env.local
+#
+## OS
+#.DS_Store
+#Thumbs.db
+#
+## Project specific
+#data/flaky_tests.json
+#data/cleanup_registry.json
 
