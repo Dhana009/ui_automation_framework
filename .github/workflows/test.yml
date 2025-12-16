@@ -23,7 +23,7 @@ jobs:
         cat <<EOF > config/env/dev.yaml
         base_url: http://localhost:3000
         browser:
-          type: chromium
+          name: chromium
           headless: true
           timeout: 30000
         timeouts:
@@ -41,7 +41,7 @@ jobs:
         cat <<EOF > config/env/qa.yaml
         base_url: http://localhost:3000
         browser:
-          type: chromium
+          name: chromium
           headless: true
           timeout: 30000
         timeouts:
