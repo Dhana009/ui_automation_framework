@@ -95,5 +95,5 @@ class Config:
 
 # Global configuration instance - loaded once at startup
 # This instance is used throughout the framework
-config = Config()
-
+config = Config() # Global configuration instance 
+#why? because we want to use the same configuration instance throughout the framework so that we don't have to load the configuration file multiple times.

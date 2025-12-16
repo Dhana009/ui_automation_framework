@@ -176,6 +176,51 @@ Run combinations:
 
 ---
 
+### **Decision 11: Base Page Class Architecture**
+**CHOSEN:** Mixin-Ready Single Class (Extensible Design)
+```
+Current Design:
+- Single base_page.py with 34 core methods
+- All methods organized by category (waits, interactions, etc.)
+- Clean separation within single file
+
+Future Expansion (When Needed):
+- Extract methods into mixins (keyboard_mixin.py, mouse_mixin.py, etc.)
+- No breaking changes to page objects
+- Page objects inherit automatically
+
+Refactoring Trigger:
+- When base_page.py exceeds 600 lines
+- When organizing into logical modules makes sense
+```
+**Base Page Methods (34 total):**
+- Wait Methods (6): wait_for_element, wait_for_url, wait_for_load_state, etc.
+- Interaction Methods (6): click, type_text, fill_text, get_text, get_attribute
+- Visibility Checks (5): is_visible, is_element_present, is_enabled, is_checked
+- Utility Methods (7): scroll_to_element, hover, take_screenshot, goto, reload, go_back, go_forward
+- Page State Methods (3): get_page_title, get_current_url, get_page_source
+- Form Methods (3): select_option, check_checkbox, uncheck_checkbox
+- Custom Assertions (4): assert_element_visible, assert_text_contains, assert_element_enabled, assert_url_contains
+
+**Future Additions (When Needed):**
+- Keyboard Methods: press_key(), keyboard_shortcut()
+- Mouse Methods: double_click(), right_click(), drag_and_drop()
+- File Upload: upload_file()
+- Frame/Alert: switch_to_frame(), accept_alert()
+- Window Handling: switch_to_window()
+
+**How to Add Methods in Future:**
+```
+Step 1: If method < 50 lines and fits category → Add to base_page.py
+Step 2: If method is new category → Create mixin file (e.g., keyboard_mixin.py)
+Step 3: Mix into BasePage class (no page object changes needed)
+Step 4: Page objects automatically inherit new methods
+```
+
+**Why:** Keeps framework simple now, scalable later without refactoring page objects.
+
+---
+
 ### **Summary of All Decisions**
 
 | Decision | Chosen | Reason |
@@ -189,7 +234,8 @@ Run combinations:
 | Fixture Scoping | Context-based | Performance optimized |
 | Error Handling | Centralized + Auto-Capture | Easy debugging |
 | Test Organization | Multi-Level Markers | Flexible selection |
-| Self-Healing | Multi-Layer Approach | Reliability maximized |
+| Self-Healing Techniques | Multi-Layer Approach | Reliability maximized |
+| Base Page Architecture | Mixin-Ready Single Class | Simple now, scalable later |
 
 ---
 
