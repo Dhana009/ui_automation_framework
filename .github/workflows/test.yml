@@ -25,17 +25,23 @@ jobs:
         browser:
           name: chromium
           headless: true
-          timeout: 30000
+          slow_mo: 0
+          viewport:
+            width: 1280
+            height: 720
         timeouts:
-          short: 5
-          medium: 10
-          long: 30
-        test_data:
-          default_user: demo_user
-          default_password: demo_password
+          page_load: 30
+          element_wait: 10
+          network: 20
         logging:
-          level: INFO
-          format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+          level: DEBUG
+          to_file: true
+        screenshots:
+          on_failure: true
+          on_every_step: false
+        test_data:
+          valid_user: user@dev.example.com
+          valid_password: devpassword123
         EOF
         
         cat <<EOF > config/env/qa.yaml
@@ -43,17 +49,23 @@ jobs:
         browser:
           name: chromium
           headless: true
-          timeout: 30000
+          slow_mo: 0
+          viewport:
+            width: 1920
+            height: 1080
         timeouts:
-          short: 5
-          medium: 10
-          long: 30
-        test_data:
-          default_user: demo_user
-          default_password: demo_password
+          page_load: 45
+          element_wait: 15
+          network: 30
         logging:
           level: INFO
-          format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+          to_file: true
+        screenshots:
+          on_failure: true
+          on_every_step: false
+        test_data:
+          valid_user: qa_user@qa.example.com
+          valid_password: qapassword123
         EOF
     
     - name: Build Docker image
