@@ -23,12 +23,60 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+    
+    - name: Create config files
+      run: |
+        mkdir -p config/env
+        cat > config/env/dev.yaml <<'EOF'
+        base_url: "http://localhost:3000"
+        browser:
+          name: "chromium"
+          headless: true
+        timeouts:
+          page_load: 30
+          element_wait: 10
+        test_data:
+          valid_user: "user@dev.example.com"
+          valid_password: "password123"
+        logging:
+          level: "INFO"
+        EOF
+        
+        cat > config/env/qa.yaml <<'EOF'
+        base_url: "https://qa.example.com"
+        browser:
+          name: "chromium"
+          headless: true
+        timeouts:
+          page_load: 45
+          element_wait: 15
+        test_data:
+          valid_user: "user@qa.example.com"
+          valid_password: "password123"
+        logging:
+          level: "INFO"
+        EOF
+        
+        cat > config/env/prod.yaml <<'EOF'
+        base_url: "https://app.example.com"
+        browser:
+          name: "chromium"
+          headless: true
+        timeouts:
+          page_load: 60
+          element_wait: 20
+        test_data:
+          valid_user: "user@prod.example.com"
+          valid_password: "password123"
+        logging:
+          level: "WARNING"
+        EOF
     
     - name: Cache pip dependencies
       uses: actions/cache@v3
@@ -66,7 +114,7 @@ jobs:
     
     - name: Upload HTML reports
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-reports
         path: reports/
@@ -74,7 +122,7 @@ jobs:
     
     - name: Upload screenshots on failure
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: screenshots
         path: screenshots/
@@ -98,7 +146,7 @@ jobs:
     name: Sanity Check
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up Python
       uses: actions/setup-python@v4
